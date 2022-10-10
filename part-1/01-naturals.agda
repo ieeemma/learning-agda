@@ -20,7 +20,7 @@ data ℕ : Set where
 -- Addition is an infix function - denoted with two underscores.
 -- It is defined inductively. The base case simply states that
 -- ∀ α, 0 + α ≡ α. The inductive case encodes the property of
--- commutativity, (1 + α) + β is isomorphic to 1 + (α + β).
+-- associativity, (1 + α) + β is isomorphic to 1 + (α + β).
 _+_ : ℕ → ℕ → ℕ
 zero + n = n
 (suc n) + n′ = suc (n + n′)
