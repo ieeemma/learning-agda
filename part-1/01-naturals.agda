@@ -3,7 +3,7 @@ module 01-naturals where
 -- https://plfa.github.io/Naturals/
 
 -- Natural numbers (aka 'Peano numbers') are defined inductively. There
--- is an assumtion, zero is a ℕ, and an inductive case, that given a
+-- is an assumption, zero is a ℕ, and an inductive case, that given a
 -- ℕ we can form a new ℕ, its successor.
 -- The type of ℕ is itself Set - this makes sense, as it is a (possibly
 -- infinite) set of values built from some known cases. 
@@ -64,3 +64,27 @@ _ =
 -- Agda can often figure this itself, however. For example:
 _ : 2 + 3 ≡ 5
 _ = refl
+
+-- Monus, like minus, but defined as 0 for any would-be negative results.
+_∸_ : ℕ → ℕ → ℕ
+n ∸ zero = n
+zero ∸ suc m = zero
+suc n ∸ suc m = n ∸ m
+
+infixl 6 _∸_
+{-# BUILTIN NATMINUS _∸_ #-}
+
+-- Multiplication.
+_*_ : ℕ → ℕ → ℕ
+n * zero = zero
+n * suc m = n + (n * m)
+
+infixl 7 _*_
+{-# BUILTIN NATTIMES _*_ #-}
+
+-- Exponentiation.
+_^_ : ℕ → ℕ → ℕ
+n ^ zero = 1
+n ^ suc m = n * (n * m)
+
+infixr 8 _^_
